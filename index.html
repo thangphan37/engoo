@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News</title>
+    <script defer>
+      window
+        .fetch('./data.json')
+        .then((response) => response.json())
+        .then((data) => {
+          const listNews = document.querySelector('#news')
+
+          data.news.forEach((item) => {
+            const li = document.createElement('li')
+            const a = document.createElement('a')
+            const span = document.createElement('span')
+            const hyphenSpan = document.createElement('span')
+
+            a.href = item.link
+            a.target = '_blank'
+            a.textContent = item.title
+
+            hyphenSpan.textContent = '-'
+            hyphenSpan.className = 'hyphen'
+            span.textContent = item.date
+
+            li.append(a, hyphenSpan, span)
+            listNews.append(li)
+          })
+        })
+    </script>
+    <style>
+      li a {
+        text-decoration: none;
+      }
+
+      main {
+        max-width: 720px;
+        margin: 1.5rem auto;
+      }
+
+      .hyphen {
+        margin: 0 0.5rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <ol id="news"></ol>
+    </main>
+  </body>
+</html>
