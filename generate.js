@@ -1,10 +1,7 @@
 const inquirer = require('inquirer')
 const fs = require('fs')
 const path = require('path')
-
-const padLeft0 = (n) => n.toString().padStart(2, '0')
-const formatDate = (d) =>
-  `${d.getFullYear()}-${padLeft0(d.getMonth() + 1)}-${padLeft0(d.getDate())}`
+const {formatDate} = require('./format-date')
 
 async function generateNew({
   serialize = JSON.parse,
